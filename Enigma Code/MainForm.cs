@@ -534,7 +534,7 @@ namespace Enigma_Code
                 i++;
             }
             txtEncrypted = txtEncrypted + keyNums[0] + splitChars[random.Next(0, splitChars.Length - 1)] + keyNums[1];
-            richTextBoxEncr.Text = txtEncrypted; // конец шифровки текста
+            richTextBoxEncr.Text = txtEncrypted;
         }
 
         private void textBoxToDecr_TextChanged(object sender, EventArgs e)
