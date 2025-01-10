@@ -502,11 +502,11 @@ namespace Enigma_Code
             }
         }
 
-        private void textBoxToEncr_TextChanged(object sender, EventArgs e)
+        private void textBoxToEncr_TextChanged(object sender, EventArgs e) // Изменение текста в боксе -> перешифровка текста
         {
             int i = 0;
 
-            string txtEncrypted = ""; // переменная готового зашифрованного текста
+            string txtEncrypted = ""; // Переменная готового зашифрованного текста
 
             char[] textToEncr = textBoxToEncr.Text.ToCharArray();
 
