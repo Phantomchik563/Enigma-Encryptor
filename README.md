@@ -1,2 +1,2 @@
 # Enigma Encryption
-Enigma Encryptor if a encrypting program that can encrypt and decrypt text.
+Enigma Encryptor is a encrypting program that can encrypt and decrypt text.
