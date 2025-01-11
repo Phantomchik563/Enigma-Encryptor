@@ -79,6 +79,7 @@ internal class Program
         {
 			Update(webClient, friendlyName, location);
         }
+
         Application.Run(new formMain());
 	}
 }

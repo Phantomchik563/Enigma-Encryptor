@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formMain));
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.checkBoxDarkTheme = new System.Windows.Forms.CheckBox();
             this.textBoxToEncr = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,7 +43,6 @@
             this.textBoxKey1 = new System.Windows.Forms.TextBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.buttonKeyLoad = new System.Windows.Forms.Button();
-            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.richTextBoxChars = new System.Windows.Forms.RichTextBox();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.textBoxKey2 = new System.Windows.Forms.TextBox();
@@ -59,23 +58,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // timer1
+            // timer
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer.Enabled = true;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // checkBox1
+            // checkBoxDarkTheme
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.checkBox1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBox1.Location = new System.Drawing.Point(853, 452);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(112, 20);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "Тёмная тема";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBoxDarkTheme.AutoSize = true;
+            this.checkBoxDarkTheme.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxDarkTheme.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBoxDarkTheme.Location = new System.Drawing.Point(853, 452);
+            this.checkBoxDarkTheme.Name = "checkBoxDarkTheme";
+            this.checkBoxDarkTheme.Size = new System.Drawing.Size(112, 20);
+            this.checkBoxDarkTheme.TabIndex = 0;
+            this.checkBoxDarkTheme.Text = "Тёмная тема";
+            this.checkBoxDarkTheme.UseVisualStyleBackColor = true;
+            this.checkBoxDarkTheme.CheckedChanged += new System.EventHandler(this.checkBoxDarkTheme_CheckedChanged);
             // 
             // textBoxToEncr
             // 
@@ -168,11 +167,11 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(764, 239);
+            this.progressBar1.Location = new System.Drawing.Point(758, 239);
             this.progressBar1.MarqueeAnimationSpeed = 1;
             this.progressBar1.Maximum = 1;
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(34, 29);
+            this.progressBar1.Size = new System.Drawing.Size(40, 29);
             this.progressBar1.Step = 1;
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar1.TabIndex = 16;
@@ -191,11 +190,7 @@
             this.buttonKeyLoad.TabIndex = 17;
             this.buttonKeyLoad.Text = "Загрузить ключ";
             this.buttonKeyLoad.UseVisualStyleBackColor = false;
-            this.buttonKeyLoad.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // timer2
-            // 
-            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            this.buttonKeyLoad.Click += new System.EventHandler(this.buttonKeyLoad_Click);
             // 
             // richTextBoxChars
             // 
@@ -208,6 +203,7 @@
             // 
             // progressBar2
             // 
+            this.progressBar2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.progressBar2.Location = new System.Drawing.Point(494, 239);
             this.progressBar2.MarqueeAnimationSpeed = 50;
             this.progressBar2.Name = "progressBar2";
@@ -343,7 +339,7 @@
             this.Controls.Add(this.textBoxToDecr);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxToEncr);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.checkBoxDarkTheme);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "formMain";
@@ -358,8 +354,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.CheckBox checkBoxDarkTheme;
         private System.Windows.Forms.TextBox textBoxToEncr;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -371,7 +367,6 @@
         private System.Windows.Forms.TextBox textBoxKey1;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button buttonKeyLoad;
-        private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.RichTextBox richTextBoxChars;
         private System.Windows.Forms.ProgressBar progressBar2;
         private System.Windows.Forms.TextBox textBoxKey2;

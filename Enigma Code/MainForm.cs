@@ -26,7 +26,6 @@ namespace Enigma_Code
     {
         bool drag = false;
         Point start_point = new Point(0, 0);
-
         string localVer = Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
 
         // все символы алфавита
@@ -38,7 +37,7 @@ namespace Enigma_Code
         'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф',
         'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я', 'A', 'B', 'C', 'D', 'E', 'F', 'G',
         'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',
-        'Z', '*', '\n','\r', '_', '"', '%', '#', '@', '$', ';', ':', '^', '>', '<', '&', '[', ']',
+        'Z', '*', '\n','\r', '\\', '_', '"', '%', '#', '@', '$', ';', ':', '^', '>', '<', '&', '[', ']',
         '{', '}', '`'};
 
         // исходный массив шифра
@@ -50,7 +49,7 @@ namespace Enigma_Code
         'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф',
         'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я', 'A', 'B', 'C', 'D', 'E', 'F', 'G',
         'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 
-        'Z', '*', '\n','\r', '_', '"', '%', '#', '@', '$', ';', ':', '^', '>', '<', '&', '[', ']',
+        'Z', '*', '\n','\r', '\\', '_', '"', '%', '#', '@', '$', ';', ':', '^', '>', '<', '&', '[', ']',
         '{', '}', '`'};
 
         // символы-разделители
@@ -65,20 +64,13 @@ namespace Enigma_Code
         'Z', '*', '_', '"', '%', '#', '@', '$', ';', ':', '^', '>', '<', '&', '[', ']',
         '{', '}', '`'};
 
-
-        public string[] languages = { "Русский", "English"};
-        int charsLength = 0;
-
+        public string[] languages = {"English", "Русский"};
+        int charsLength;
         string key1;
         string key2;
-
         char temp;
-
         string[] textToDecr;
-
         int[] keyNums = new int[2]; // [0] - Ширина отступа между заменяемых элементов массива    [1] - Сколько раз нужно повторить цикл
-
-        bool darkTheme;
 
 
         public formMain()
@@ -86,155 +78,21 @@ namespace Enigma_Code
             InitializeComponent();
             textBoxKey1.MaxLength = 2;
             textBoxKey2.MaxLength = 2;
-
             charsLength = chars.Length;
 
             textBoxKey1.Text = Properties.Settings.Default.key1;
             textBoxKey2.Text = Properties.Settings.Default.key2;
-
-            checkBox1.Checked = Properties.Settings.Default.darkTheme;
-
-            comboBoxLang.DataSource = languages; // 0-Рус, 1-Eng, 
-            try
-            {
-                comboBoxLang.Text = languages[Properties.Settings.Default.Language];
-            }
-            catch { }
+            checkBoxDarkTheme.Checked = Properties.Settings.Default.darkTheme;
+            comboBoxLang.DataSource = languages; // 0-Eng, 1-Рус, 
+            comboBoxLang.Text = languages[Properties.Settings.Default.Language];
             label5.Text = "V-" + Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
 
-            charsLength = chars.Length;
+            comboBoxLang_SelectedIndexChanged(null, null);
+            checkBoxDarkTheme_CheckedChanged(null, null);
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void buttonKeyLoad_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.darkTheme = darkTheme;
-            Properties.Settings.Default.Language = Array.IndexOf(languages, comboBoxLang.Text);
-            Properties.Settings.Default.Save();
-
-            if(darkTheme == false)
-            {
-                label1.ForeColor = Color.FromArgb(0, 0, 0);
-                label2.ForeColor = Color.FromArgb(0, 0, 0);
-                label3.ForeColor = Color.FromArgb(0, 0, 0);
-                label4.ForeColor = Color.FromArgb(0, 0, 0);
-                label5.ForeColor = Color.FromArgb(0, 0, 0);
-
-                BackColor = Color.FromArgb(230, 230, 230);
-
-                textBoxToEncr.BackColor = BackColor;
-                textBoxToDecr.BackColor = BackColor;
-
-                textBoxToEncr.ForeColor = label1.ForeColor;
-                textBoxToDecr.ForeColor = label1.ForeColor;
-
-                textBoxKey1.BackColor = BackColor;
-                textBoxKey2.BackColor = BackColor;
-
-                textBoxKey1.ForeColor = label1.ForeColor;
-                textBoxKey2.ForeColor = label1.ForeColor;
-
-                progressBar1.BackColor = BackColor;
-                progressBar2.BackColor = BackColor;
-
-                progressBar1.ForeColor = label1.ForeColor;
-                progressBar2.ForeColor = label1.ForeColor;
-
-                richTextBoxEncr.BackColor = BackColor;
-                richTextBoxDecr.BackColor = BackColor;
-                richTextBoxChars.BackColor = BackColor;
-                
-                richTextBoxEncr.ForeColor = label1.ForeColor;
-                richTextBoxDecr.ForeColor = label1.ForeColor;
-                richTextBoxChars.ForeColor = label1.ForeColor;
-
-                checkBox1.BackColor = BackColor;
-                checkBox1.ForeColor = label1.ForeColor;
-
-                buttonKeyLoad.ForeColor = label1.ForeColor;
-
-                panel1.BackColor = Color.FromArgb(245,245,245);
-
-                label6.ForeColor = label1.ForeColor;
-
-                button4.ForeColor = label1.ForeColor;
-                button5.ForeColor = label1.ForeColor;
-
-                comboBoxLang.BackColor = textBoxToEncr.BackColor;
-                comboBoxLang.ForeColor = textBoxToEncr.ForeColor;
-            }
-            else
-            {
-                label1.ForeColor = Color.FromArgb(250, 250, 250);
-                label2.ForeColor = Color.FromArgb(250, 250, 250);
-                label3.ForeColor = Color.FromArgb(250, 250, 250);
-                label4.ForeColor = Color.FromArgb(250, 250, 250);
-                label5.ForeColor = Color.FromArgb(250, 250, 250);
-                label6.ForeColor = label1.ForeColor;
-
-                BackColor = Color.FromArgb(30, 30, 30);
-
-                textBoxToEncr.BackColor = BackColor;
-                textBoxToDecr.BackColor = BackColor;
-
-                textBoxToEncr.ForeColor = label1.ForeColor;
-                textBoxToDecr.ForeColor = label1.ForeColor;
-
-                textBoxKey1.BackColor = BackColor;
-                textBoxKey2.BackColor = BackColor;
-
-                textBoxKey1.ForeColor = label1.ForeColor;
-                textBoxKey2.ForeColor = label1.ForeColor;
-
-                progressBar1.BackColor = BackColor;
-                progressBar2.BackColor = BackColor;
-
-                progressBar1.ForeColor = label1.ForeColor;
-                progressBar2.ForeColor = label1.ForeColor;
-
-                richTextBoxEncr.BackColor = BackColor;
-                richTextBoxDecr.BackColor = BackColor;
-                richTextBoxChars.BackColor = BackColor;
-
-                richTextBoxEncr.ForeColor = label1.ForeColor;
-                richTextBoxDecr.ForeColor = label1.ForeColor;
-                richTextBoxChars.ForeColor = label1.ForeColor;
-
-                checkBox1.BackColor = BackColor;
-                checkBox1.ForeColor = label1.ForeColor;
-
-                buttonKeyLoad.ForeColor = label1.ForeColor;
-
-                panel1.BackColor = Color.FromArgb(50, 50, 50);
-
-                button4.ForeColor = label1.ForeColor;
-                button5.ForeColor = label1.ForeColor;
-
-                comboBoxLang.BackColor = textBoxToEncr.BackColor;
-                comboBoxLang.ForeColor = textBoxToEncr.ForeColor;
-
-
-            }
-
-            if (int.TryParse(textBoxKey1.Text, out int number) && int.TryParse(textBoxKey2.Text, out number))
-            {
-                if (textBoxKey1.Text == key1 && textBoxKey2.Text == key2)
-                {
-                    progressBar1.Value = 1;
-                    timer2.Enabled = true;
-                }
-                else
-                {
-                    progressBar1.Value = 0;
-                    timer2.Enabled= false;
-                }
-            }
-            
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            // ===================================== ШИФРОВКА АЛФАВИТА ===================================== \\
-
             int q = 0; // сброс алфавита
             while (q < chars.Length)
             {
@@ -275,13 +133,13 @@ namespace Enigma_Code
             Properties.Settings.Default.key2 = key2;
             Properties.Settings.Default.Save();
 
-            if(textBoxKey1.Text == key1 && textBoxKey2.Text == key2)
+            if (textBoxKey1.Text == key1 && textBoxKey2.Text == key2)
             {
                 string[] keyArr = new string[2];
                 keyArr[0] = key1;
                 keyArr[1] = key2;
 
-                
+
 
                 richTextBoxChars.AppendText(keyArr[0]);
                 richTextBoxChars.AppendText(keyArr[1]);
@@ -303,7 +161,7 @@ namespace Enigma_Code
                 int y = 0;
                 int key_2_modded = 1;
 
-                while(y < 3)
+                while (y < 3)
                 {
                     key_2_modded = key_2_modded * keyNums[1];
                     y++;
@@ -311,14 +169,14 @@ namespace Enigma_Code
 
                 progressBar2.Maximum = key_2_modded;
 
-                while(k < key_2_modded) // Шифровка алфавита
+                while (k < key_2_modded) // Шифровка алфавита
                 {
 
-                    while (j + keyNums[0]+u < code.Length)
+                    while (j + keyNums[0] + u < code.Length)
                     {
                         temp = code[j];
-                        code[j] = code[j + keyNums[0]+u];
-                        code[j + keyNums[0]+u] = temp;
+                        code[j] = code[j + keyNums[0] + u];
+                        code[j + keyNums[0] + u] = temp;
                         j++;
                     }
 
@@ -337,78 +195,6 @@ namespace Enigma_Code
                 }
 
                 richTextBoxChars.Text = new string(code) + "\n \n[" + charsLength + "]";
-            }
-        }
-
-        private void timer2_Tick(object sender, EventArgs e)
-        {       
-
-
-
-            //==============================================================================================
-            
-
-            richTextBoxDecr.Clear(); // Дешифровка текста
-            textToDecr = null;
-
-            int j = 0;
-            int k = 0;
-
-            string txtDecrypted = "";
-            
-            while(k<textBoxToDecr.Text.Length)
-            {
-                textToDecr = textBoxToDecr.Text.Split('/');
-                k++;
-
-                while (j < textToDecr.Length - 2 && textToDecr != null)
-                {
-                    if (textToDecr[j] != "" && textToDecr[j] != "/" && textToDecr[j] != "." && textToDecr[j] != "," && textToDecr[j] != "|" && textToDecr[j] != "-" && textToDecr[j] != "=")
-                    {
-                        if ((j + 1) % 2 == 0)
-                        {
-                            txtDecrypted = txtDecrypted + code[int.Parse(textToDecr[j]) / ((j + 2) ^ 2)];
-                        }
-                        else if ((j + 1) % 3 == 0)
-                        {
-                            txtDecrypted = txtDecrypted + code[int.Parse(textToDecr[j]) / ((j + 2) ^ 3)];
-                        }
-                        else
-                        {
-                            txtDecrypted = txtDecrypted + code[int.Parse(textToDecr[j]) / (j + 2)];
-                        }
-                            
-
-
-                    }
-                    else
-                    {
-                        textToDecr[j] = "/";
-                    }
-                    j++;
-                }
-            }
-            
-            
-            
-            richTextBoxDecr.Text = txtDecrypted;        
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            if(checkBox1.Checked == true)
-            {
-                darkTheme = true;
-
-                button4.BackColor = Color.FromArgb(50, 50, 50);
-                button5.BackColor = Color.FromArgb(50, 50, 50);
-            }
-            else
-            {
-                darkTheme = false;
-
-                button4.BackColor = Color.FromArgb(245, 245, 245);
-                button5.BackColor = Color.FromArgb(245, 245, 245);
             }
         }
 
@@ -464,7 +250,8 @@ namespace Enigma_Code
 
         private void comboBoxLang_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxLang.Text == "Русский")
+            int lang = Properties.Settings.Default.Language;
+            if (lang == 1)
             {
                 label1.Text = "Шифровка";
                 label2.Text = "Дешифровка";
@@ -472,7 +259,7 @@ namespace Enigma_Code
                 buttonKeyLoad.Text = "Загрузить ключ";
                 buttonKeyLoad.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 
-                checkBox1.Text = "Тёмная тема";
+                checkBoxDarkTheme.Text = "Тёмная тема";
 
                 toolTip.SetToolTip(progressBar1, "Ключ в полях соответствует загруженному");
                 toolTip.SetToolTip(label5, "Версия " + localVer + ", от 09.06.2024");
@@ -484,7 +271,7 @@ namespace Enigma_Code
 
                 toolTip.SetToolTip(richTextBoxChars, "Все зашифрованные символы");
             }
-            else if(comboBoxLang.Text == "English")
+            else if(lang == 0)
             {
                 label1.Text = "Encryption";
                 label2.Text = "Decryption";
@@ -492,7 +279,7 @@ namespace Enigma_Code
                 buttonKeyLoad.Text = "Load key";
                 buttonKeyLoad.Font = new System.Drawing.Font("Tahoma", 11, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 
-                checkBox1.Text = "Dark theme";
+                checkBoxDarkTheme.Text = "Dark theme";
 
                 toolTip.SetToolTip(progressBar1, "The key in the fields same with the loaded key");
                 toolTip.SetToolTip(label5, "Version " + localVer + ", of 09.06.2024");
@@ -509,11 +296,8 @@ namespace Enigma_Code
         private void textBoxToEncr_TextChanged(object sender, EventArgs e) // Изменение текста в боксе -> перешифровка текста
         {
             int i = 0;
-
             string txtEncrypted = ""; // Переменная готового зашифрованного текста
-
             char[] textToEncr = textBoxToEncr.Text.ToCharArray();
-
             Random random = new Random();
 
             while (i < textToEncr.Length)
@@ -548,7 +332,6 @@ namespace Enigma_Code
 
             int j = 0;
             int k = 0;
-
             string txtDecrypted = "";
 
             while (k < textBoxToDecr.Text.Length)
@@ -581,9 +364,132 @@ namespace Enigma_Code
                 }
             }
 
-
-
             richTextBoxDecr.Text = txtDecrypted;
+        }
+
+        private void checkBoxDarkTheme_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxDarkTheme.Checked == false)
+            {
+                label1.ForeColor = Color.FromArgb(0, 0, 0);
+                label2.ForeColor = Color.FromArgb(0, 0, 0);
+                label3.ForeColor = Color.FromArgb(0, 0, 0);
+                label4.ForeColor = Color.FromArgb(0, 0, 0);
+                label5.ForeColor = Color.FromArgb(0, 0, 0);
+
+                BackColor = Color.FromArgb(230, 230, 230);
+
+                textBoxToEncr.BackColor = BackColor;
+                textBoxToDecr.BackColor = BackColor;
+
+                textBoxToEncr.ForeColor = label1.ForeColor;
+                textBoxToDecr.ForeColor = label1.ForeColor;
+
+                textBoxKey1.BackColor = BackColor;
+                textBoxKey2.BackColor = BackColor;
+
+                textBoxKey1.ForeColor = label1.ForeColor;
+                textBoxKey2.ForeColor = label1.ForeColor;
+
+                progressBar1.BackColor = BackColor;
+                progressBar2.BackColor = BackColor;
+
+                progressBar1.ForeColor = label1.ForeColor;
+                progressBar2.ForeColor = label1.ForeColor;
+
+                richTextBoxEncr.BackColor = BackColor;
+                richTextBoxDecr.BackColor = BackColor;
+                richTextBoxChars.BackColor = BackColor;
+
+                richTextBoxEncr.ForeColor = label1.ForeColor;
+                richTextBoxDecr.ForeColor = label1.ForeColor;
+                richTextBoxChars.ForeColor = label1.ForeColor;
+
+                checkBoxDarkTheme.BackColor = BackColor;
+                checkBoxDarkTheme.ForeColor = label1.ForeColor;
+
+                buttonKeyLoad.ForeColor = label1.ForeColor;
+
+                panel1.BackColor = Color.FromArgb(245, 245, 245);
+
+                label6.ForeColor = label1.ForeColor;
+
+                button4.ForeColor = label1.ForeColor;
+                button5.ForeColor = label1.ForeColor;
+
+                comboBoxLang.BackColor = textBoxToEncr.BackColor;
+                comboBoxLang.ForeColor = textBoxToEncr.ForeColor;
+            }
+            else
+            {
+                label1.ForeColor = Color.FromArgb(250, 250, 250);
+                label2.ForeColor = Color.FromArgb(250, 250, 250);
+                label3.ForeColor = Color.FromArgb(250, 250, 250);
+                label4.ForeColor = Color.FromArgb(250, 250, 250);
+                label5.ForeColor = Color.FromArgb(250, 250, 250);
+                label6.ForeColor = label1.ForeColor;
+
+                BackColor = Color.FromArgb(30, 30, 30);
+
+                textBoxToEncr.BackColor = BackColor;
+                textBoxToDecr.BackColor = BackColor;
+
+                textBoxToEncr.ForeColor = label1.ForeColor;
+                textBoxToDecr.ForeColor = label1.ForeColor;
+
+                textBoxKey1.BackColor = BackColor;
+                textBoxKey2.BackColor = BackColor;
+
+                textBoxKey1.ForeColor = label1.ForeColor;
+                textBoxKey2.ForeColor = label1.ForeColor;
+
+                progressBar1.BackColor = BackColor;
+                progressBar2.BackColor = BackColor;
+
+                progressBar1.ForeColor = label1.ForeColor;
+                progressBar2.ForeColor = label1.ForeColor;
+
+                richTextBoxEncr.BackColor = BackColor;
+                richTextBoxDecr.BackColor = BackColor;
+                richTextBoxChars.BackColor = BackColor;
+
+                richTextBoxEncr.ForeColor = label1.ForeColor;
+                richTextBoxDecr.ForeColor = label1.ForeColor;
+                richTextBoxChars.ForeColor = label1.ForeColor;
+
+                checkBoxDarkTheme.BackColor = BackColor;
+                checkBoxDarkTheme.ForeColor = label1.ForeColor;
+
+                buttonKeyLoad.ForeColor = label1.ForeColor;
+
+                panel1.BackColor = Color.FromArgb(50, 50, 50);
+
+                button4.ForeColor = label1.ForeColor;
+                button5.ForeColor = label1.ForeColor;
+
+                comboBoxLang.BackColor = textBoxToEncr.BackColor;
+                comboBoxLang.ForeColor = textBoxToEncr.ForeColor;
+            }
+            Properties.Settings.Default.darkTheme = checkBoxDarkTheme.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            if (int.TryParse(textBoxKey1.Text, out int number) && int.TryParse(textBoxKey2.Text, out number))
+            {
+                if (textBoxKey1.Text == key1 && textBoxKey2.Text == key2)
+                {
+                    progressBar1.Value = 1;
+                }
+                else
+                {
+                    progressBar1.Value = 0;
+                }
+            }
+
+            Properties.Settings.Default.Language = Array.IndexOf(languages, comboBoxLang.Text);
+            Properties.Settings.Default.Save();
         }
     }
 }
