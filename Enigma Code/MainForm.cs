@@ -95,7 +95,11 @@ namespace Enigma_Code
             checkBox1.Checked = Properties.Settings.Default.darkTheme;
 
             comboBoxLang.DataSource = languages; // 0-Рус, 1-Eng, 
-            comboBoxLang.Text = languages[Properties.Settings.Default.Language];
+            try
+            {
+                comboBoxLang.Text = languages[Properties.Settings.Default.Language];
+            }
+            catch { }
             label5.Text = "V-" + Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
 
             charsLength = chars.Length;
