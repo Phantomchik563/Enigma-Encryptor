@@ -45,17 +45,17 @@
             this.buttonKeyLoad = new System.Windows.Forms.Button();
             this.richTextBoxChars = new System.Windows.Forms.RichTextBox();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
-            this.textBoxKey2 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.panelApp = new System.Windows.Forms.Panel();
+            this.labelApp = new System.Windows.Forms.Label();
+            this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
+            this.buttonMinApp = new System.Windows.Forms.Button();
+            this.buttonCloseApp = new System.Windows.Forms.Button();
             this.comboBoxLang = new System.Windows.Forms.ComboBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.textBoxKey2 = new System.Windows.Forms.TextBox();
+            this.panelApp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // timer
@@ -207,21 +207,10 @@
             this.progressBar2.Location = new System.Drawing.Point(494, 239);
             this.progressBar2.MarqueeAnimationSpeed = 50;
             this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(264, 29);
+            this.progressBar2.Size = new System.Drawing.Size(266, 29);
             this.progressBar2.Step = 1;
             this.progressBar2.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar2.TabIndex = 19;
-            // 
-            // textBoxKey2
-            // 
-            this.textBoxKey2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxKey2.Location = new System.Drawing.Point(462, 239);
-            this.textBoxKey2.Multiline = true;
-            this.textBoxKey2.Name = "textBoxKey2";
-            this.textBoxKey2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.textBoxKey2.Size = new System.Drawing.Size(26, 27);
-            this.textBoxKey2.TabIndex = 20;
-            this.textBoxKey2.Text = "00";
             // 
             // label5
             // 
@@ -234,75 +223,75 @@
             this.label5.TabIndex = 23;
             this.label5.Text = "V-1.19.6";
             // 
-            // panel1
+            // panelApp
             // 
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.button5);
-            this.panel1.Controls.Add(this.button4);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(977, 28);
-            this.panel1.TabIndex = 24;
-            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
-            this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
-            this.panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseUp);
+            this.panelApp.Controls.Add(this.labelApp);
+            this.panelApp.Controls.Add(this.pictureBoxIcon);
+            this.panelApp.Controls.Add(this.buttonMinApp);
+            this.panelApp.Controls.Add(this.buttonCloseApp);
+            this.panelApp.Location = new System.Drawing.Point(0, 0);
+            this.panelApp.Name = "panelApp";
+            this.panelApp.Size = new System.Drawing.Size(977, 28);
+            this.panelApp.TabIndex = 24;
+            this.panelApp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+            this.panelApp.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
+            this.panelApp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseUp);
             // 
-            // label6
+            // labelApp
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Tai Le", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(34, 6);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(126, 19);
-            this.label6.TabIndex = 28;
-            this.label6.Text = "Enigma Encryptor";
+            this.labelApp.AutoSize = true;
+            this.labelApp.Font = new System.Drawing.Font("Microsoft Tai Le", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelApp.Location = new System.Drawing.Point(34, 6);
+            this.labelApp.Name = "labelApp";
+            this.labelApp.Size = new System.Drawing.Size(126, 19);
+            this.labelApp.TabIndex = 28;
+            this.labelApp.Text = "Enigma Encryptor";
             // 
-            // pictureBox1
+            // pictureBoxIcon
             // 
-            this.pictureBox1.BackgroundImage = global::Enigma_Code.Properties.Resources.encryption_icon_216177_fotor_20240419182913;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBox1.Image = global::Enigma_Code.Properties.Resources.encryption_icon_216177_fotor_20240419182913;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(28, 28);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 27;
-            this.pictureBox1.TabStop = false;
+            this.pictureBoxIcon.BackgroundImage = global::Enigma_Code.Properties.Resources.encryption_icon_216177_fotor_20240419182913;
+            this.pictureBoxIcon.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBoxIcon.Image = global::Enigma_Code.Properties.Resources.encryption_icon_216177_fotor_20240419182913;
+            this.pictureBoxIcon.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxIcon.Name = "pictureBoxIcon";
+            this.pictureBoxIcon.Size = new System.Drawing.Size(28, 28);
+            this.pictureBoxIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxIcon.TabIndex = 27;
+            this.pictureBoxIcon.TabStop = false;
             // 
-            // button5
+            // buttonMinApp
             // 
-            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button5.Location = new System.Drawing.Point(899, 0);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(39, 28);
-            this.button5.TabIndex = 26;
-            this.button5.Text = "—";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            this.button5.MouseEnter += new System.EventHandler(this.button5_MouseEnter);
-            this.button5.MouseLeave += new System.EventHandler(this.button5_MouseLeave);
+            this.buttonMinApp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonMinApp.Dock = System.Windows.Forms.DockStyle.Right;
+            this.buttonMinApp.FlatAppearance.BorderSize = 0;
+            this.buttonMinApp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonMinApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonMinApp.Location = new System.Drawing.Point(899, 0);
+            this.buttonMinApp.Name = "buttonMinApp";
+            this.buttonMinApp.Size = new System.Drawing.Size(39, 28);
+            this.buttonMinApp.TabIndex = 26;
+            this.buttonMinApp.Text = "—";
+            this.buttonMinApp.UseVisualStyleBackColor = true;
+            this.buttonMinApp.Click += new System.EventHandler(this.button5_Click);
+            this.buttonMinApp.MouseEnter += new System.EventHandler(this.button5_MouseEnter);
+            this.buttonMinApp.MouseLeave += new System.EventHandler(this.button5_MouseLeave);
             // 
-            // button4
+            // buttonCloseApp
             // 
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button4.Location = new System.Drawing.Point(938, 0);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(39, 28);
-            this.button4.TabIndex = 25;
-            this.button4.Text = "X";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button4_MouseClick);
-            this.button4.MouseEnter += new System.EventHandler(this.button4_MouseEnter);
-            this.button4.MouseLeave += new System.EventHandler(this.button4_MouseLeave);
+            this.buttonCloseApp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonCloseApp.Dock = System.Windows.Forms.DockStyle.Right;
+            this.buttonCloseApp.FlatAppearance.BorderSize = 0;
+            this.buttonCloseApp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCloseApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonCloseApp.Location = new System.Drawing.Point(938, 0);
+            this.buttonCloseApp.Name = "buttonCloseApp";
+            this.buttonCloseApp.Size = new System.Drawing.Size(39, 28);
+            this.buttonCloseApp.TabIndex = 25;
+            this.buttonCloseApp.Text = "X";
+            this.buttonCloseApp.UseVisualStyleBackColor = true;
+            this.buttonCloseApp.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button4_MouseClick);
+            this.buttonCloseApp.MouseEnter += new System.EventHandler(this.button4_MouseEnter);
+            this.buttonCloseApp.MouseLeave += new System.EventHandler(this.button4_MouseLeave);
             // 
             // comboBoxLang
             // 
@@ -316,6 +305,17 @@
             this.comboBoxLang.TabIndex = 25;
             this.comboBoxLang.SelectedIndexChanged += new System.EventHandler(this.comboBoxLang_SelectedIndexChanged);
             // 
+            // textBoxKey2
+            // 
+            this.textBoxKey2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxKey2.Location = new System.Drawing.Point(462, 239);
+            this.textBoxKey2.Multiline = true;
+            this.textBoxKey2.Name = "textBoxKey2";
+            this.textBoxKey2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.textBoxKey2.Size = new System.Drawing.Size(26, 27);
+            this.textBoxKey2.TabIndex = 20;
+            this.textBoxKey2.Text = "00";
+            // 
             // formMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -323,7 +323,7 @@
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(977, 484);
             this.Controls.Add(this.comboBoxLang);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelApp);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBoxKey2);
             this.Controls.Add(this.progressBar2);
@@ -344,9 +344,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "formMain";
             this.Text = "Enigma Code";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panelApp.ResumeLayout(false);
+            this.panelApp.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -369,15 +369,15 @@
         private System.Windows.Forms.Button buttonKeyLoad;
         private System.Windows.Forms.RichTextBox richTextBoxChars;
         private System.Windows.Forms.ProgressBar progressBar2;
-        private System.Windows.Forms.TextBox textBoxKey2;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel panelApp;
+        private System.Windows.Forms.Button buttonCloseApp;
+        private System.Windows.Forms.Button buttonMinApp;
+        private System.Windows.Forms.PictureBox pictureBoxIcon;
+        private System.Windows.Forms.Label labelApp;
         private System.Windows.Forms.ComboBox comboBoxLang;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.TextBox textBoxKey2;
     }
 }
 

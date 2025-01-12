@@ -200,12 +200,12 @@ namespace Enigma_Code
 
         private void button4_MouseEnter(object sender, EventArgs e)
         {
-            button4.BackColor = Color.Red;
+            buttonCloseApp.BackColor = Color.Red;
         }
 
         private void button4_MouseLeave(object sender, EventArgs e)
         {
-            button4.BackColor = panel1.BackColor;
+            buttonCloseApp.BackColor = panelApp.BackColor;
         }
 
         private void button4_MouseClick(object sender, MouseEventArgs e)
@@ -215,12 +215,12 @@ namespace Enigma_Code
 
         private void button5_MouseEnter(object sender, EventArgs e)
         {
-            button5.BackColor = Color.FromArgb(140,140,255);
+            buttonMinApp.BackColor = Color.FromArgb(140,140,255);
         }
 
         private void button5_MouseLeave(object sender, EventArgs e)
         {
-            button5.BackColor = panel1.BackColor;
+            buttonMinApp.BackColor = panelApp.BackColor;
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -410,12 +410,12 @@ namespace Enigma_Code
 
                 buttonKeyLoad.ForeColor = label1.ForeColor;
 
-                panel1.BackColor = Color.FromArgb(245, 245, 245);
+                panelApp.BackColor = Color.FromArgb(245, 245, 245);
 
-                label6.ForeColor = label1.ForeColor;
+                labelApp.ForeColor = label1.ForeColor;
 
-                button4.ForeColor = label1.ForeColor;
-                button5.ForeColor = label1.ForeColor;
+                buttonCloseApp.ForeColor = label1.ForeColor;
+                buttonMinApp.ForeColor = label1.ForeColor;
 
                 comboBoxLang.BackColor = textBoxToEncr.BackColor;
                 comboBoxLang.ForeColor = textBoxToEncr.ForeColor;
@@ -427,7 +427,7 @@ namespace Enigma_Code
                 label3.ForeColor = Color.FromArgb(250, 250, 250);
                 label4.ForeColor = Color.FromArgb(250, 250, 250);
                 label5.ForeColor = Color.FromArgb(250, 250, 250);
-                label6.ForeColor = label1.ForeColor;
+                labelApp.ForeColor = label1.ForeColor;
 
                 BackColor = Color.FromArgb(30, 30, 30);
 
@@ -462,10 +462,10 @@ namespace Enigma_Code
 
                 buttonKeyLoad.ForeColor = label1.ForeColor;
 
-                panel1.BackColor = Color.FromArgb(50, 50, 50);
+                panelApp.BackColor = Color.FromArgb(50, 50, 50);
 
-                button4.ForeColor = label1.ForeColor;
-                button5.ForeColor = label1.ForeColor;
+                buttonCloseApp.ForeColor = label1.ForeColor;
+                buttonMinApp.ForeColor = label1.ForeColor;
 
                 comboBoxLang.BackColor = textBoxToEncr.BackColor;
                 comboBoxLang.ForeColor = textBoxToEncr.ForeColor;
