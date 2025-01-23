@@ -417,6 +417,8 @@ namespace Enigma_Code
                 buttonCloseApp.ForeColor = label1.ForeColor;
                 buttonMinApp.ForeColor = label1.ForeColor;
 
+                buttonSettings.Image = Properties.Resources.Settings_Icon_LightTheme;
+
                 comboBoxLang.BackColor = textBoxToEncr.BackColor;
                 comboBoxLang.ForeColor = textBoxToEncr.ForeColor;
             }
@@ -467,6 +469,8 @@ namespace Enigma_Code
                 buttonCloseApp.ForeColor = label1.ForeColor;
                 buttonMinApp.ForeColor = label1.ForeColor;
 
+                buttonSettings.Image = Properties.Resources.Settings_Icon_DarkTheme;
+
                 comboBoxLang.BackColor = textBoxToEncr.BackColor;
                 comboBoxLang.ForeColor = textBoxToEncr.ForeColor;
             }
@@ -490,6 +494,11 @@ namespace Enigma_Code
 
             Properties.Settings.Default.Language = Array.IndexOf(languages, comboBoxLang.Text);
             Properties.Settings.Default.Save();
+        }
+
+        private void buttonSettings_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

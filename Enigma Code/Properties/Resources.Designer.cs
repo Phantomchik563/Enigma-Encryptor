@@ -63,9 +63,29 @@ namespace Enigma_Code.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap encryption_icon_216177_fotor_20240419182913 {
+        internal static System.Drawing.Bitmap App_Icon {
             get {
-                object obj = ResourceManager.GetObject("encryption_icon_216177-fotor-20240419182913", resourceCulture);
+                object obj = ResourceManager.GetObject("App_Icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Settings_Icon_DarkTheme {
+            get {
+                object obj = ResourceManager.GetObject("Settings_Icon_DarkTheme", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Settings_Icon_LightTheme {
+            get {
+                object obj = ResourceManager.GetObject("Settings_Icon_LightTheme", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

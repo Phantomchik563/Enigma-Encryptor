@@ -48,12 +48,13 @@
             this.label5 = new System.Windows.Forms.Label();
             this.panelApp = new System.Windows.Forms.Panel();
             this.labelApp = new System.Windows.Forms.Label();
-            this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
             this.buttonMinApp = new System.Windows.Forms.Button();
             this.buttonCloseApp = new System.Windows.Forms.Button();
             this.comboBoxLang = new System.Windows.Forms.ComboBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.textBoxKey2 = new System.Windows.Forms.TextBox();
+            this.buttonSettings = new System.Windows.Forms.Button();
+            this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
             this.panelApp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).BeginInit();
             this.SuspendLayout();
@@ -68,7 +69,7 @@
             this.checkBoxDarkTheme.AutoSize = true;
             this.checkBoxDarkTheme.Cursor = System.Windows.Forms.Cursors.Hand;
             this.checkBoxDarkTheme.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBoxDarkTheme.Location = new System.Drawing.Point(853, 452);
+            this.checkBoxDarkTheme.Location = new System.Drawing.Point(686, 454);
             this.checkBoxDarkTheme.Name = "checkBoxDarkTheme";
             this.checkBoxDarkTheme.Size = new System.Drawing.Size(112, 20);
             this.checkBoxDarkTheme.TabIndex = 0;
@@ -247,18 +248,6 @@
             this.labelApp.TabIndex = 28;
             this.labelApp.Text = "Enigma Encryptor";
             // 
-            // pictureBoxIcon
-            // 
-            this.pictureBoxIcon.BackgroundImage = global::Enigma_Code.Properties.Resources.encryption_icon_216177_fotor_20240419182913;
-            this.pictureBoxIcon.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBoxIcon.Image = global::Enigma_Code.Properties.Resources.encryption_icon_216177_fotor_20240419182913;
-            this.pictureBoxIcon.Location = new System.Drawing.Point(0, 0);
-            this.pictureBoxIcon.Name = "pictureBoxIcon";
-            this.pictureBoxIcon.Size = new System.Drawing.Size(28, 28);
-            this.pictureBoxIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxIcon.TabIndex = 27;
-            this.pictureBoxIcon.TabStop = false;
-            // 
             // buttonMinApp
             // 
             this.buttonMinApp.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -316,12 +305,40 @@
             this.textBoxKey2.TabIndex = 20;
             this.textBoxKey2.Text = "00";
             // 
+            // buttonSettings
+            // 
+            this.buttonSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.buttonSettings.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
+            this.buttonSettings.FlatAppearance.BorderSize = 0;
+            this.buttonSettings.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonSettings.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonSettings.Image = global::Enigma_Code.Properties.Resources.Settings_Icon_DarkTheme;
+            this.buttonSettings.Location = new System.Drawing.Point(938, 449);
+            this.buttonSettings.Name = "buttonSettings";
+            this.buttonSettings.Size = new System.Drawing.Size(27, 27);
+            this.buttonSettings.TabIndex = 26;
+            this.buttonSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonSettings.UseVisualStyleBackColor = true;
+            this.buttonSettings.Click += new System.EventHandler(this.buttonSettings_Click);
+            // 
+            // pictureBoxIcon
+            // 
+            this.pictureBoxIcon.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBoxIcon.Image = global::Enigma_Code.Properties.Resources.App_Icon;
+            this.pictureBoxIcon.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxIcon.Name = "pictureBoxIcon";
+            this.pictureBoxIcon.Size = new System.Drawing.Size(28, 28);
+            this.pictureBoxIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxIcon.TabIndex = 27;
+            this.pictureBoxIcon.TabStop = false;
+            // 
             // formMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(977, 484);
+            this.Controls.Add(this.buttonSettings);
             this.Controls.Add(this.comboBoxLang);
             this.Controls.Add(this.panelApp);
             this.Controls.Add(this.label5);
@@ -378,6 +395,7 @@
         private System.Windows.Forms.ComboBox comboBoxLang;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.TextBox textBoxKey2;
+        private System.Windows.Forms.Button buttonSettings;
     }
 }
 
