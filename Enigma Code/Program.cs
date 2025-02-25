@@ -67,17 +67,17 @@ internal class Program
 		string[] serverVerArr = serverVer.Split(new char[1] { '.' });
 
 
-		if (int.Parse(serverVerArr[0]) > int.Parse(localVerArr[0]) && int.Parse(serverVerArr[1]) <= int.Parse(localVerArr[1]) && int.Parse(serverVerArr[2]) <= int.Parse(localVerArr[2]))
+		if (int.Parse(serverVerArr[0]) > int.Parse(localVerArr[0]) && int.Parse(serverVerArr[1]) == int.Parse(localVerArr[1]) && int.Parse(serverVerArr[2]) == int.Parse(localVerArr[2]))
 		{
             Update(webClient, friendlyName, location);
         }
-        else if (int.Parse(serverVerArr[0]) <= int.Parse(localVerArr[0]) && int.Parse(serverVerArr[1]) > int.Parse(localVerArr[1]) && int.Parse(serverVerArr[2]) <= int.Parse(localVerArr[2]))
+        else if (int.Parse(serverVerArr[0]) == int.Parse(localVerArr[0]) && int.Parse(serverVerArr[1]) > int.Parse(localVerArr[1]) && int.Parse(serverVerArr[2]) == int.Parse(localVerArr[2]))
         {
             Update(webClient, friendlyName, location);
         }
-        else if (int.Parse(serverVerArr[0]) <= int.Parse(localVerArr[0]) && int.Parse(serverVerArr[1]) <= int.Parse(localVerArr[1]) && int.Parse(serverVerArr[2]) > int.Parse(localVerArr[2]))
+        else if (int.Parse(serverVerArr[0]) == int.Parse(localVerArr[0]) && int.Parse(serverVerArr[1]) == int.Parse(localVerArr[1]) && int.Parse(serverVerArr[2]) > int.Parse(localVerArr[2]))
         {
-			Update(webClient, friendlyName, location);
+            Update(webClient, friendlyName, location);
         }
 
         Application.Run(new formMain());

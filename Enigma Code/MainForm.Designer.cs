@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formMain));
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.checkBoxDarkTheme = new System.Windows.Forms.CheckBox();
             this.textBoxToEncr = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -48,13 +47,13 @@
             this.label5 = new System.Windows.Forms.Label();
             this.panelApp = new System.Windows.Forms.Panel();
             this.labelApp = new System.Windows.Forms.Label();
+            this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
             this.buttonMinApp = new System.Windows.Forms.Button();
             this.buttonCloseApp = new System.Windows.Forms.Button();
             this.comboBoxLang = new System.Windows.Forms.ComboBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.textBoxKey2 = new System.Windows.Forms.TextBox();
             this.buttonSettings = new System.Windows.Forms.Button();
-            this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
             this.panelApp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).BeginInit();
             this.SuspendLayout();
@@ -64,21 +63,9 @@
             this.timer.Enabled = true;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // checkBoxDarkTheme
-            // 
-            this.checkBoxDarkTheme.AutoSize = true;
-            this.checkBoxDarkTheme.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.checkBoxDarkTheme.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBoxDarkTheme.Location = new System.Drawing.Point(686, 454);
-            this.checkBoxDarkTheme.Name = "checkBoxDarkTheme";
-            this.checkBoxDarkTheme.Size = new System.Drawing.Size(112, 20);
-            this.checkBoxDarkTheme.TabIndex = 0;
-            this.checkBoxDarkTheme.Text = "Тёмная тема";
-            this.checkBoxDarkTheme.UseVisualStyleBackColor = true;
-            this.checkBoxDarkTheme.CheckedChanged += new System.EventHandler(this.checkBoxDarkTheme_CheckedChanged);
-            // 
             // textBoxToEncr
             // 
+            this.textBoxToEncr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxToEncr.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxToEncr.Location = new System.Drawing.Point(12, 62);
             this.textBoxToEncr.Multiline = true;
@@ -101,6 +88,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.ForeColor = System.Drawing.Color.Green;
             this.label2.Location = new System.Drawing.Point(12, 249);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(119, 19);
@@ -109,6 +97,7 @@
             // 
             // textBoxToDecr
             // 
+            this.textBoxToDecr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxToDecr.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxToDecr.Location = new System.Drawing.Point(12, 272);
             this.textBoxToDecr.Multiline = true;
@@ -139,6 +128,7 @@
             // 
             // richTextBoxEncr
             // 
+            this.richTextBoxEncr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.richTextBoxEncr.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.richTextBoxEncr.Location = new System.Drawing.Point(430, 62);
             this.richTextBoxEncr.Name = "richTextBoxEncr";
@@ -148,6 +138,7 @@
             // 
             // richTextBoxDecr
             // 
+            this.richTextBoxDecr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.richTextBoxDecr.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.richTextBoxDecr.Location = new System.Drawing.Point(430, 272);
             this.richTextBoxDecr.Name = "richTextBoxDecr";
@@ -157,6 +148,7 @@
             // 
             // textBoxKey1
             // 
+            this.textBoxKey1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxKey1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxKey1.Location = new System.Drawing.Point(430, 239);
             this.textBoxKey1.Multiline = true;
@@ -179,10 +171,10 @@
             // 
             // buttonKeyLoad
             // 
-            this.buttonKeyLoad.BackColor = System.Drawing.Color.Red;
+            this.buttonKeyLoad.BackColor = System.Drawing.Color.Green;
             this.buttonKeyLoad.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonKeyLoad.FlatAppearance.BorderSize = 0;
-            this.buttonKeyLoad.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonKeyLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonKeyLoad.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonKeyLoad.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonKeyLoad.Location = new System.Drawing.Point(301, 239);
@@ -195,6 +187,7 @@
             // 
             // richTextBoxChars
             // 
+            this.richTextBoxChars.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.richTextBoxChars.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.richTextBoxChars.Location = new System.Drawing.Point(804, 62);
             this.richTextBoxChars.Name = "richTextBoxChars";
@@ -248,6 +241,17 @@
             this.labelApp.TabIndex = 28;
             this.labelApp.Text = "Enigma Encryptor";
             // 
+            // pictureBoxIcon
+            // 
+            this.pictureBoxIcon.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBoxIcon.Image = global::Enigma_Code.Properties.Resources.App_Icon;
+            this.pictureBoxIcon.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxIcon.Name = "pictureBoxIcon";
+            this.pictureBoxIcon.Size = new System.Drawing.Size(28, 28);
+            this.pictureBoxIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxIcon.TabIndex = 27;
+            this.pictureBoxIcon.TabStop = false;
+            // 
             // buttonMinApp
             // 
             this.buttonMinApp.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -288,7 +292,7 @@
             this.comboBoxLang.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxLang.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBoxLang.FormattingEnabled = true;
-            this.comboBoxLang.Location = new System.Drawing.Point(804, 34);
+            this.comboBoxLang.Location = new System.Drawing.Point(637, 32);
             this.comboBoxLang.Name = "comboBoxLang";
             this.comboBoxLang.Size = new System.Drawing.Size(161, 24);
             this.comboBoxLang.TabIndex = 25;
@@ -296,6 +300,7 @@
             // 
             // textBoxKey2
             // 
+            this.textBoxKey2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxKey2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxKey2.Location = new System.Drawing.Point(462, 239);
             this.textBoxKey2.Multiline = true;
@@ -310,27 +315,20 @@
             this.buttonSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.buttonSettings.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
             this.buttonSettings.FlatAppearance.BorderSize = 0;
-            this.buttonSettings.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSettings.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonSettings.Image = global::Enigma_Code.Properties.Resources.Settings_Icon_DarkTheme;
-            this.buttonSettings.Location = new System.Drawing.Point(938, 449);
+            this.buttonSettings.ForeColor = System.Drawing.Color.Green;
+            this.buttonSettings.Image = global::Enigma_Code.Properties.Resources.Settings_Icon_LightTheme;
+            this.buttonSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.buttonSettings.Location = new System.Drawing.Point(804, 32);
             this.buttonSettings.Name = "buttonSettings";
-            this.buttonSettings.Size = new System.Drawing.Size(27, 27);
+            this.buttonSettings.Size = new System.Drawing.Size(161, 27);
             this.buttonSettings.TabIndex = 26;
+            this.buttonSettings.Text = " Настройки";
             this.buttonSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonSettings.UseVisualStyleBackColor = true;
             this.buttonSettings.Click += new System.EventHandler(this.buttonSettings_Click);
-            // 
-            // pictureBoxIcon
-            // 
-            this.pictureBoxIcon.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBoxIcon.Image = global::Enigma_Code.Properties.Resources.App_Icon;
-            this.pictureBoxIcon.Location = new System.Drawing.Point(0, 0);
-            this.pictureBoxIcon.Name = "pictureBoxIcon";
-            this.pictureBoxIcon.Size = new System.Drawing.Size(28, 28);
-            this.pictureBoxIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxIcon.TabIndex = 27;
-            this.pictureBoxIcon.TabStop = false;
             // 
             // formMain
             // 
@@ -356,7 +354,6 @@
             this.Controls.Add(this.textBoxToDecr);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxToEncr);
-            this.Controls.Add(this.checkBoxDarkTheme);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "formMain";
@@ -372,7 +369,6 @@
         #endregion
 
         private System.Windows.Forms.Timer timer;
-        private System.Windows.Forms.CheckBox checkBoxDarkTheme;
         private System.Windows.Forms.TextBox textBoxToEncr;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

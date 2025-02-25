@@ -82,7 +82,6 @@ namespace Enigma_Code
 
             textBoxKey1.Text = Properties.Settings.Default.key1;
             textBoxKey2.Text = Properties.Settings.Default.key2;
-            checkBoxDarkTheme.Checked = Properties.Settings.Default.darkTheme;
             comboBoxLang.DataSource = languages; // 0-Eng, 1-Рус, 
             comboBoxLang.Text = languages[Properties.Settings.Default.Language];
             label5.Text = "V-" + Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
@@ -259,8 +258,6 @@ namespace Enigma_Code
                 buttonKeyLoad.Text = "Загрузить ключ";
                 buttonKeyLoad.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 
-                checkBoxDarkTheme.Text = "Тёмная тема";
-
                 toolTip.SetToolTip(progressBar1, "Ключ в полях соответствует загруженному");
                 toolTip.SetToolTip(label5, "Версия " + localVer + ", от 09.06.2024");
 
@@ -278,8 +275,6 @@ namespace Enigma_Code
 
                 buttonKeyLoad.Text = "Load key";
                 buttonKeyLoad.Font = new System.Drawing.Font("Tahoma", 11, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-
-                checkBoxDarkTheme.Text = "Dark theme";
 
                 toolTip.SetToolTip(progressBar1, "The key in the fields same with the loaded key");
                 toolTip.SetToolTip(label5, "Version " + localVer + ", of 09.06.2024");
@@ -369,7 +364,7 @@ namespace Enigma_Code
 
         private void checkBoxDarkTheme_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxDarkTheme.Checked == false)
+            if (Properties.Settings.Default.darkTheme == false)
             {
                 label1.ForeColor = Color.FromArgb(0, 0, 0);
                 label2.ForeColor = Color.FromArgb(0, 0, 0);
@@ -404,9 +399,6 @@ namespace Enigma_Code
                 richTextBoxEncr.ForeColor = label1.ForeColor;
                 richTextBoxDecr.ForeColor = label1.ForeColor;
                 richTextBoxChars.ForeColor = label1.ForeColor;
-
-                checkBoxDarkTheme.BackColor = BackColor;
-                checkBoxDarkTheme.ForeColor = label1.ForeColor;
 
                 buttonKeyLoad.ForeColor = label1.ForeColor;
 
@@ -459,9 +451,6 @@ namespace Enigma_Code
                 richTextBoxDecr.ForeColor = label1.ForeColor;
                 richTextBoxChars.ForeColor = label1.ForeColor;
 
-                checkBoxDarkTheme.BackColor = BackColor;
-                checkBoxDarkTheme.ForeColor = label1.ForeColor;
-
                 buttonKeyLoad.ForeColor = label1.ForeColor;
 
                 panelApp.BackColor = Color.FromArgb(50, 50, 50);
@@ -474,8 +463,6 @@ namespace Enigma_Code
                 comboBoxLang.BackColor = textBoxToEncr.BackColor;
                 comboBoxLang.ForeColor = textBoxToEncr.ForeColor;
             }
-            Properties.Settings.Default.darkTheme = checkBoxDarkTheme.Checked;
-            Properties.Settings.Default.Save();
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -498,7 +485,10 @@ namespace Enigma_Code
 
         private void buttonSettings_Click(object sender, EventArgs e)
         {
-
+            settingsForm SettingsForm = new settingsForm();
+            SettingsForm.Show();
+            SettingsForm.Activate();
+            this.Hide();
         }
     }
 }

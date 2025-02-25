@@ -73,6 +73,16 @@ namespace Enigma_Code.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap App_Settings_Icon {
+            get {
+                object obj = ResourceManager.GetObject("App_Settings_Icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Settings_Icon_DarkTheme {
             get {
                 object obj = ResourceManager.GetObject("Settings_Icon_DarkTheme", resourceCulture);
