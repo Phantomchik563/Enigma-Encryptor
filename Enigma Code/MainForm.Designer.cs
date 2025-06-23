@@ -39,20 +39,18 @@
             this.label4 = new System.Windows.Forms.Label();
             this.richTextBoxEncr = new System.Windows.Forms.RichTextBox();
             this.richTextBoxDecr = new System.Windows.Forms.RichTextBox();
-            this.textBoxKey1 = new System.Windows.Forms.TextBox();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.textBoxKey = new System.Windows.Forms.TextBox();
+            this.progressBarConfirm = new System.Windows.Forms.ProgressBar();
             this.buttonKeyLoad = new System.Windows.Forms.Button();
             this.richTextBoxChars = new System.Windows.Forms.RichTextBox();
-            this.progressBar2 = new System.Windows.Forms.ProgressBar();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.label5 = new System.Windows.Forms.Label();
             this.panelApp = new System.Windows.Forms.Panel();
             this.labelApp = new System.Windows.Forms.Label();
             this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
             this.buttonMinApp = new System.Windows.Forms.Button();
             this.buttonCloseApp = new System.Windows.Forms.Button();
-            this.comboBoxLang = new System.Windows.Forms.ComboBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.textBoxKey2 = new System.Windows.Forms.TextBox();
             this.buttonSettings = new System.Windows.Forms.Button();
             this.panelApp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).BeginInit();
@@ -146,28 +144,28 @@
             this.richTextBoxDecr.TabIndex = 14;
             this.richTextBoxDecr.Text = "";
             // 
-            // textBoxKey1
+            // textBoxKey
             // 
-            this.textBoxKey1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxKey1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxKey1.Location = new System.Drawing.Point(430, 239);
-            this.textBoxKey1.Multiline = true;
-            this.textBoxKey1.Name = "textBoxKey1";
-            this.textBoxKey1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.textBoxKey1.Size = new System.Drawing.Size(26, 27);
-            this.textBoxKey1.TabIndex = 15;
-            this.textBoxKey1.Text = "00";
+            this.textBoxKey.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxKey.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxKey.Location = new System.Drawing.Point(430, 239);
+            this.textBoxKey.MaxLength = 5;
+            this.textBoxKey.Name = "textBoxKey";
+            this.textBoxKey.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.textBoxKey.Size = new System.Drawing.Size(58, 27);
+            this.textBoxKey.TabIndex = 15;
+            this.textBoxKey.Text = "00000";
             // 
-            // progressBar1
+            // progressBarConfirm
             // 
-            this.progressBar1.Location = new System.Drawing.Point(758, 239);
-            this.progressBar1.MarqueeAnimationSpeed = 1;
-            this.progressBar1.Maximum = 1;
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(40, 29);
-            this.progressBar1.Step = 1;
-            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.progressBar1.TabIndex = 16;
+            this.progressBarConfirm.Location = new System.Drawing.Point(758, 239);
+            this.progressBarConfirm.MarqueeAnimationSpeed = 1;
+            this.progressBarConfirm.Maximum = 1;
+            this.progressBarConfirm.Name = "progressBarConfirm";
+            this.progressBarConfirm.Size = new System.Drawing.Size(40, 29);
+            this.progressBarConfirm.Step = 1;
+            this.progressBarConfirm.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBarConfirm.TabIndex = 16;
             // 
             // buttonKeyLoad
             // 
@@ -195,16 +193,16 @@
             this.richTextBoxChars.TabIndex = 18;
             this.richTextBoxChars.Text = "";
             // 
-            // progressBar2
+            // progressBar
             // 
-            this.progressBar2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.progressBar2.Location = new System.Drawing.Point(494, 239);
-            this.progressBar2.MarqueeAnimationSpeed = 50;
-            this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(266, 29);
-            this.progressBar2.Step = 1;
-            this.progressBar2.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.progressBar2.TabIndex = 19;
+            this.progressBar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.progressBar.Location = new System.Drawing.Point(494, 239);
+            this.progressBar.MarqueeAnimationSpeed = 50;
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(266, 29);
+            this.progressBar.Step = 1;
+            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar.TabIndex = 19;
             // 
             // label5
             // 
@@ -286,30 +284,6 @@
             this.buttonCloseApp.MouseEnter += new System.EventHandler(this.button4_MouseEnter);
             this.buttonCloseApp.MouseLeave += new System.EventHandler(this.button4_MouseLeave);
             // 
-            // comboBoxLang
-            // 
-            this.comboBoxLang.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBoxLang.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxLang.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBoxLang.FormattingEnabled = true;
-            this.comboBoxLang.Location = new System.Drawing.Point(637, 32);
-            this.comboBoxLang.Name = "comboBoxLang";
-            this.comboBoxLang.Size = new System.Drawing.Size(161, 24);
-            this.comboBoxLang.TabIndex = 25;
-            this.comboBoxLang.SelectedIndexChanged += new System.EventHandler(this.comboBoxLang_SelectedIndexChanged);
-            // 
-            // textBoxKey2
-            // 
-            this.textBoxKey2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxKey2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxKey2.Location = new System.Drawing.Point(462, 239);
-            this.textBoxKey2.Multiline = true;
-            this.textBoxKey2.Name = "textBoxKey2";
-            this.textBoxKey2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.textBoxKey2.Size = new System.Drawing.Size(26, 27);
-            this.textBoxKey2.TabIndex = 20;
-            this.textBoxKey2.Text = "00";
-            // 
             // buttonSettings
             // 
             this.buttonSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -337,15 +311,13 @@
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(977, 484);
             this.Controls.Add(this.buttonSettings);
-            this.Controls.Add(this.comboBoxLang);
             this.Controls.Add(this.panelApp);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBoxKey2);
-            this.Controls.Add(this.progressBar2);
+            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.richTextBoxChars);
             this.Controls.Add(this.buttonKeyLoad);
-            this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.textBoxKey1);
+            this.Controls.Add(this.progressBarConfirm);
+            this.Controls.Add(this.textBoxKey);
             this.Controls.Add(this.richTextBoxDecr);
             this.Controls.Add(this.richTextBoxEncr);
             this.Controls.Add(this.label4);
@@ -377,20 +349,18 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.RichTextBox richTextBoxEncr;
         private System.Windows.Forms.RichTextBox richTextBoxDecr;
-        private System.Windows.Forms.TextBox textBoxKey1;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.TextBox textBoxKey;
+        private System.Windows.Forms.ProgressBar progressBarConfirm;
         private System.Windows.Forms.Button buttonKeyLoad;
         private System.Windows.Forms.RichTextBox richTextBoxChars;
-        private System.Windows.Forms.ProgressBar progressBar2;
+        private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panelApp;
         private System.Windows.Forms.Button buttonCloseApp;
         private System.Windows.Forms.Button buttonMinApp;
         private System.Windows.Forms.PictureBox pictureBoxIcon;
         private System.Windows.Forms.Label labelApp;
-        private System.Windows.Forms.ComboBox comboBoxLang;
         private System.Windows.Forms.ToolTip toolTip;
-        private System.Windows.Forms.TextBox textBoxKey2;
         private System.Windows.Forms.Button buttonSettings;
     }
 }

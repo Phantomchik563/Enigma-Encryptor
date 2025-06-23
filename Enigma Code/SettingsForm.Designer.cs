@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(settingsForm));
             this.labelApp = new System.Windows.Forms.Label();
             this.panelApp = new System.Windows.Forms.Panel();
+            this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
             this.buttonMinApp = new System.Windows.Forms.Button();
             this.buttonCloseApp = new System.Windows.Forms.Button();
-            this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
+            this.comboBoxLang = new System.Windows.Forms.ComboBox();
             this.checkBoxDarkTheme = new System.Windows.Forms.CheckBox();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.panelApp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).BeginInit();
             this.SuspendLayout();
@@ -62,6 +65,17 @@
             this.panelApp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelApp_MouseDown);
             this.panelApp.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelApp_MouseMove);
             this.panelApp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelApp_MouseUp);
+            // 
+            // pictureBoxIcon
+            // 
+            this.pictureBoxIcon.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBoxIcon.Image = global::Enigma_Code.Properties.Resources.App_Settings_Icon;
+            this.pictureBoxIcon.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxIcon.Name = "pictureBoxIcon";
+            this.pictureBoxIcon.Size = new System.Drawing.Size(28, 28);
+            this.pictureBoxIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxIcon.TabIndex = 27;
+            this.pictureBoxIcon.TabStop = false;
             // 
             // buttonMinApp
             // 
@@ -97,16 +111,17 @@
             this.buttonCloseApp.MouseEnter += new System.EventHandler(this.buttonCloseApp_MouseEnter);
             this.buttonCloseApp.MouseLeave += new System.EventHandler(this.buttonCloseApp_MouseLeave);
             // 
-            // pictureBoxIcon
+            // comboBoxLang
             // 
-            this.pictureBoxIcon.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBoxIcon.Image = global::Enigma_Code.Properties.Resources.App_Settings_Icon;
-            this.pictureBoxIcon.Location = new System.Drawing.Point(0, 0);
-            this.pictureBoxIcon.Name = "pictureBoxIcon";
-            this.pictureBoxIcon.Size = new System.Drawing.Size(28, 28);
-            this.pictureBoxIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxIcon.TabIndex = 27;
-            this.pictureBoxIcon.TabStop = false;
+            this.comboBoxLang.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.comboBoxLang.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxLang.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBoxLang.FormattingEnabled = true;
+            this.comboBoxLang.Location = new System.Drawing.Point(12, 92);
+            this.comboBoxLang.Name = "comboBoxLang";
+            this.comboBoxLang.Size = new System.Drawing.Size(161, 24);
+            this.comboBoxLang.TabIndex = 30;
+            this.comboBoxLang.SelectedIndexChanged += new System.EventHandler(this.comboBoxLang_SelectedIndexChanged);
             // 
             // checkBoxDarkTheme
             // 
@@ -121,11 +136,17 @@
             this.checkBoxDarkTheme.UseVisualStyleBackColor = true;
             this.checkBoxDarkTheme.CheckedChanged += new System.EventHandler(this.checkBoxDarkTheme_CheckedChanged);
             // 
+            // timer
+            // 
+            this.timer.Enabled = true;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
             // settingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(644, 450);
+            this.ClientSize = new System.Drawing.Size(644, 327);
+            this.Controls.Add(this.comboBoxLang);
             this.Controls.Add(this.checkBoxDarkTheme);
             this.Controls.Add(this.panelApp);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -147,6 +168,8 @@
         private System.Windows.Forms.Panel panelApp;
         private System.Windows.Forms.Button buttonMinApp;
         private System.Windows.Forms.Button buttonCloseApp;
+        private System.Windows.Forms.ComboBox comboBoxLang;
         private System.Windows.Forms.CheckBox checkBoxDarkTheme;
+        private System.Windows.Forms.Timer timer;
     }
 }

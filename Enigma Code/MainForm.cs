@@ -15,6 +15,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using static System.Net.Mime.MediaTypeNames;
@@ -65,100 +66,51 @@ namespace Enigma_Code
         '{', '}', '`'};
 
         public string[] languages = {"English", "Русский"};
-        int charsLength;
-        string key1;
-        string key2;
+        int charsLength, lang;
+        string key1, key2, key = "00000";
         char temp;
         string[] textToDecr;
         int[] keyNums = new int[2]; // [0] - Ширина отступа между заменяемых элементов массива    [1] - Сколько раз нужно повторить цикл
-
+        bool darkTheme;
 
         public formMain()
         {
             InitializeComponent();
-            textBoxKey1.MaxLength = 2;
-            textBoxKey2.MaxLength = 2;
+            textBoxKey.MaxLength = 5;
             charsLength = chars.Length;
 
-            textBoxKey1.Text = Properties.Settings.Default.key1;
-            textBoxKey2.Text = Properties.Settings.Default.key2;
-            comboBoxLang.DataSource = languages; // 0-Eng, 1-Рус, 
-            comboBoxLang.Text = languages[Properties.Settings.Default.Language];
+            textBoxKey.Text = Properties.Settings.Default.Key;
             label5.Text = "V-" + Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
-
-            comboBoxLang_SelectedIndexChanged(null, null);
-            checkBoxDarkTheme_CheckedChanged(null, null);
+            Properties.Settings.Default.Upgrade();
         }
 
         private void buttonKeyLoad_Click(object sender, EventArgs e)
         {
-            int q = 0; // сброс алфавита
-            while (q < chars.Length)
+            for(int i = 0; i < chars.Length; i++) code[i] = chars[i]; // Сброс алфавита 
+
+            if (textToDecr != null && textToDecr.Length > 2 && int.TryParse(textToDecr[textToDecr.Length - 1], out int number))
             {
-                code[q] = chars[q];
-                q++;
-            }
-
-            int i = 0;
-
-            string tempKey1;
-            string tempKey2;
-
-            if (textToDecr != null && textToDecr.Length > 3 && int.TryParse(textToDecr[textToDecr.Length - 2], out int number) && int.TryParse(textToDecr[textToDecr.Length - 1], out number))
-            {
-                tempKey1 = textToDecr[textToDecr.Length - 2];
-                tempKey2 = textToDecr[textToDecr.Length - 1];
-
-
-                textBoxKey1.Text = tempKey1;
-                textBoxKey2.Text = tempKey2;
-
-                key1 = tempKey1;
-                key2 = tempKey2;
-
-                Thread.Sleep(10);
-                tempKey1 = null;
-                tempKey2 = null;
+                keySeparator(strReverse(textToDecr[textToDecr.Length - 1]));
+                textBoxKey.Text = key;
             }
             else
             {
-                key1 = textBoxKey1.Text;
-                key2 = textBoxKey2.Text;
+                keySeparator(textBoxKey.Text);
             }
 
-
-
-            Properties.Settings.Default.key1 = key1;
-            Properties.Settings.Default.key2 = key2;
+            Properties.Settings.Default.Key = key;
             Properties.Settings.Default.Save();
 
-            if (textBoxKey1.Text == key1 && textBoxKey2.Text == key2)
+            if (textBoxKey.Text == key)
             {
-                string[] keyArr = new string[2];
-                keyArr[0] = key1;
-                keyArr[1] = key2;
+                richTextBoxChars.AppendText(key);
 
+                keyNums[0] = int.Parse(key1);
+                keyNums[1] = int.Parse(key2);
 
+                progressBar.Value = 0;
 
-                richTextBoxChars.AppendText(keyArr[0]);
-                richTextBoxChars.AppendText(keyArr[1]);
-
-                while (i < keyArr.Length)
-                {
-                    if (int.TryParse(keyArr[i], out number))
-                    {
-                        keyNums[i] = int.Parse(keyArr[i]);
-                    }
-                    i++;
-                }
-
-                progressBar2.Value = 0;
-
-                int u = 0;
-                int j = 0;
-                int k = 0;
-                int y = 0;
-                int key_2_modded = 1;
+                int u = 0, j = 0, k = 0, y = 0, key_2_modded = 1;
 
                 while (y < 3)
                 {
@@ -166,7 +118,7 @@ namespace Enigma_Code
                     y++;
                 }
 
-                progressBar2.Maximum = key_2_modded;
+                progressBar.Maximum = key_2_modded;
 
                 while (k < key_2_modded) // Шифровка алфавита
                 {
@@ -179,12 +131,10 @@ namespace Enigma_Code
                         j++;
                     }
 
-                    progressBar2.Value = k;
+                    progressBar.Value = k;
 
                     k++;
                     u++;
-
-
                     if (u > charsLength + 1)
                     {
                         u = u - charsLength;
@@ -195,6 +145,54 @@ namespace Enigma_Code
 
                 richTextBoxChars.Text = new string(code) + "\n \n[" + charsLength + "]";
             }
+            textBoxToDecr_TextChanged(sender, e);
+        }
+        
+        private string strReverse(string str)
+        {
+            char[] outArr = str.ToCharArray();
+            Array.Reverse(outArr);
+            return new string(outArr);
+        }
+
+        private void mainEncryptionProcedure()
+        {
+
+        }
+
+        private void keySeparator(string keyToSep)
+        {
+            int key1_keySep = 0, key2_keySep = 0, keyNotSeparated;
+            keyNotSeparated = int.Parse(keyToSep);
+
+            if (keyNotSeparated > 0 && keyNotSeparated < 10)
+            {
+                key1_keySep++;
+                key2_keySep = keyNotSeparated;
+            }
+            else if (keyNotSeparated > 9 && keyNotSeparated < 100)
+            {
+                key1_keySep = keyNotSeparated / 10;
+                key2_keySep = keyNotSeparated % 10;
+            }
+            else if (keyNotSeparated > 99 && keyNotSeparated < 1000)
+            {
+                key1_keySep = keyNotSeparated / 10;
+                key2_keySep = keyNotSeparated % 100;
+            }
+            else if (keyNotSeparated > 999 && keyNotSeparated < 10000)
+            {
+                key1_keySep = keyNotSeparated / 100;
+                key2_keySep = keyNotSeparated % 100;
+            }
+            else if (keyNotSeparated > 9999 && keyNotSeparated < 100000)
+            {
+                key1_keySep = keyNotSeparated / 1000;
+                key2_keySep = keyNotSeparated % 1000;
+            }
+            key = keyNotSeparated.ToString();
+            key1 = key1_keySep.ToString();
+            key2 = key2_keySep.ToString();
         }
 
         private void button4_MouseEnter(object sender, EventArgs e)
@@ -209,6 +207,7 @@ namespace Enigma_Code
 
         private void button4_MouseClick(object sender, MouseEventArgs e)
         {
+            Properties.Settings.Default.Save();
             System.Windows.Forms.Application.Exit();
         }
 
@@ -247,40 +246,39 @@ namespace Enigma_Code
             }
         }
 
-        private void comboBoxLang_SelectedIndexChanged(object sender, EventArgs e)
+        private void langCheck()
         {
-            int lang = Properties.Settings.Default.Language;
-            if (lang == 1)
+            if (Properties.Settings.Default.Language == 1)
             {
+                lang = 1;
                 label1.Text = "Шифровка";
                 label2.Text = "Дешифровка";
 
                 buttonKeyLoad.Text = "Загрузить ключ";
                 buttonKeyLoad.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 
-                toolTip.SetToolTip(progressBar1, "Ключ в полях соответствует загруженному");
+                toolTip.SetToolTip(progressBarConfirm, "Ключ в полях соответствует загруженному");
                 toolTip.SetToolTip(label5, "Версия " + localVer + ", от 09.06.2024");
 
-                toolTip.SetToolTip(textBoxKey1, "Поле ключа");
-                toolTip.SetToolTip(textBoxKey2, "Поле ключа");
+                toolTip.SetToolTip(textBoxKey, "Поле ключа");
 
                 toolTip.SetToolTip(buttonKeyLoad, "Загрузить этот ключ");
 
                 toolTip.SetToolTip(richTextBoxChars, "Все зашифрованные символы");
             }
-            else if(lang == 0)
+            else if (Properties.Settings.Default.Language == 0)
             {
+                lang = 0;
                 label1.Text = "Encryption";
                 label2.Text = "Decryption";
 
                 buttonKeyLoad.Text = "Load key";
                 buttonKeyLoad.Font = new System.Drawing.Font("Tahoma", 11, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 
-                toolTip.SetToolTip(progressBar1, "The key in the fields same with the loaded key");
+                toolTip.SetToolTip(progressBarConfirm, "The key in the fields same with the loaded key");
                 toolTip.SetToolTip(label5, "Version " + localVer + ", of 09.06.2024");
 
-                toolTip.SetToolTip(textBoxKey1, "Field for key");
-                toolTip.SetToolTip(textBoxKey2, "Field for key");
+                toolTip.SetToolTip(textBoxKey, "Field for key");
 
                 toolTip.SetToolTip(buttonKeyLoad, "Load this key");
 
@@ -298,25 +296,29 @@ namespace Enigma_Code
             while (i < textToEncr.Length)
             {
                 string letter;
+                long index;
 
                 if ((i + 1) % 2 == 0)
                 {
-                    letter = (Array.IndexOf(code, textToEncr[i]) * ((i + 2) ^ 2)).ToString();
+                    index = Array.IndexOf(code, textToEncr[i]) * ((i + 7));
+                    letter = index.ToString();
                 }
                 else if ((i + 1) % 3 == 0)
                 {
-                    letter = (Array.IndexOf(code, textToEncr[i]) * ((i + 2) ^ 3)).ToString();
+                    index = Array.IndexOf(code, textToEncr[i]) * ((i + 2) ^ 2);
+                    letter = index.ToString();
                 }
                 else
                 {
-                    letter = (Array.IndexOf(code, textToEncr[i]) * (i + 2)).ToString();
+                    index = Array.IndexOf(code, textToEncr[i]) * (i + 2);
+                    letter = index.ToString();
                 }
 
 
                 txtEncrypted = txtEncrypted + letter + splitChars[random.Next(0, splitChars.Length - 1)];
                 i++;
             }
-            txtEncrypted = txtEncrypted + keyNums[0] + splitChars[random.Next(0, splitChars.Length - 1)] + keyNums[1];
+            txtEncrypted = txtEncrypted + strReverse(key);
             richTextBoxEncr.Text = txtEncrypted;
         }
 
@@ -325,8 +327,7 @@ namespace Enigma_Code
             richTextBoxDecr.Clear(); // Дешифровка текста
             textToDecr = null;
 
-            int j = 0;
-            int k = 0;
+            int j = 0, k = 0;
             string txtDecrypted = "";
 
             while (k < textBoxToDecr.Text.Length)
@@ -334,17 +335,17 @@ namespace Enigma_Code
                 textToDecr = textBoxToDecr.Text.Split(splitChars);
                 k++;
 
-                while (j < textToDecr.Length - 2 && textToDecr != null)
+                while (j < textToDecr.Length - 1 && textToDecr != null)
                 {
                     if (textToDecr[j] != "" || textToDecr[j] != null)
                     {
                         if ((j + 1) % 2 == 0)
                         {
-                            txtDecrypted = txtDecrypted + code[int.Parse(textToDecr[j]) / ((j + 2) ^ 2)];
+                            txtDecrypted = txtDecrypted + code[int.Parse(textToDecr[j]) / ((j + 7))];
                         }
                         else if ((j + 1) % 3 == 0)
                         {
-                            txtDecrypted = txtDecrypted + code[int.Parse(textToDecr[j]) / ((j + 2) ^ 3)];
+                            txtDecrypted = txtDecrypted + code[int.Parse(textToDecr[j]) / ((j + 2) ^ 2)];
                         }
                         else
                         {
@@ -362,10 +363,11 @@ namespace Enigma_Code
             richTextBoxDecr.Text = txtDecrypted;
         }
 
-        private void checkBoxDarkTheme_CheckedChanged(object sender, EventArgs e)
+        private void darkThemeCheck()
         {
             if (Properties.Settings.Default.darkTheme == false)
             {
+                darkTheme = false;
                 label1.ForeColor = Color.FromArgb(0, 0, 0);
                 label2.ForeColor = Color.FromArgb(0, 0, 0);
                 label3.ForeColor = Color.FromArgb(0, 0, 0);
@@ -380,17 +382,15 @@ namespace Enigma_Code
                 textBoxToEncr.ForeColor = label1.ForeColor;
                 textBoxToDecr.ForeColor = label1.ForeColor;
 
-                textBoxKey1.BackColor = BackColor;
-                textBoxKey2.BackColor = BackColor;
+                textBoxKey.BackColor = BackColor;
 
-                textBoxKey1.ForeColor = label1.ForeColor;
-                textBoxKey2.ForeColor = label1.ForeColor;
+                textBoxKey.ForeColor = label1.ForeColor;
 
-                progressBar1.BackColor = BackColor;
-                progressBar2.BackColor = BackColor;
+                progressBarConfirm.BackColor = BackColor;
+                progressBar.BackColor = BackColor;
 
-                progressBar1.ForeColor = label1.ForeColor;
-                progressBar2.ForeColor = label1.ForeColor;
+                progressBarConfirm.ForeColor = label1.ForeColor;
+                progressBar.ForeColor = label1.ForeColor;
 
                 richTextBoxEncr.BackColor = BackColor;
                 richTextBoxDecr.BackColor = BackColor;
@@ -410,12 +410,10 @@ namespace Enigma_Code
                 buttonMinApp.ForeColor = label1.ForeColor;
 
                 buttonSettings.Image = Properties.Resources.Settings_Icon_LightTheme;
-
-                comboBoxLang.BackColor = textBoxToEncr.BackColor;
-                comboBoxLang.ForeColor = textBoxToEncr.ForeColor;
             }
-            else
+            else if(Properties.Settings.Default.darkTheme == true)
             {
+                darkTheme = true;
                 label1.ForeColor = Color.FromArgb(250, 250, 250);
                 label2.ForeColor = Color.FromArgb(250, 250, 250);
                 label3.ForeColor = Color.FromArgb(250, 250, 250);
@@ -431,17 +429,15 @@ namespace Enigma_Code
                 textBoxToEncr.ForeColor = label1.ForeColor;
                 textBoxToDecr.ForeColor = label1.ForeColor;
 
-                textBoxKey1.BackColor = BackColor;
-                textBoxKey2.BackColor = BackColor;
+                textBoxKey.BackColor = BackColor;
 
-                textBoxKey1.ForeColor = label1.ForeColor;
-                textBoxKey2.ForeColor = label1.ForeColor;
+                textBoxKey.ForeColor = label1.ForeColor;
 
-                progressBar1.BackColor = BackColor;
-                progressBar2.BackColor = BackColor;
+                progressBarConfirm.BackColor = BackColor;
+                progressBar.BackColor = BackColor;
 
-                progressBar1.ForeColor = label1.ForeColor;
-                progressBar2.ForeColor = label1.ForeColor;
+                progressBarConfirm.ForeColor = label1.ForeColor;
+                progressBar.ForeColor = label1.ForeColor;
 
                 richTextBoxEncr.BackColor = BackColor;
                 richTextBoxDecr.BackColor = BackColor;
@@ -459,36 +455,36 @@ namespace Enigma_Code
                 buttonMinApp.ForeColor = label1.ForeColor;
 
                 buttonSettings.Image = Properties.Resources.Settings_Icon_DarkTheme;
-
-                comboBoxLang.BackColor = textBoxToEncr.BackColor;
-                comboBoxLang.ForeColor = textBoxToEncr.ForeColor;
             }
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            if (int.TryParse(textBoxKey1.Text, out int number) && int.TryParse(textBoxKey2.Text, out number))
+            if (int.TryParse(textBoxKey.Text, out int number))
             {
-                if (textBoxKey1.Text == key1 && textBoxKey2.Text == key2)
+                if (textBoxKey.Text == key)
                 {
-                    progressBar1.Value = 1;
+                    progressBarConfirm.Value = 1;
                 }
                 else
                 {
-                    progressBar1.Value = 0;
+                    progressBarConfirm.Value = 0;
                 }
             }
-
-            Properties.Settings.Default.Language = Array.IndexOf(languages, comboBoxLang.Text);
+            langCheck();
+            darkThemeCheck();
             Properties.Settings.Default.Save();
         }
 
         private void buttonSettings_Click(object sender, EventArgs e)
         {
+            formMain formMain = new formMain();
             settingsForm SettingsForm = new settingsForm();
             SettingsForm.Show();
             SettingsForm.Activate();
-            this.Hide();
+            Properties.Settings.Default.darkTheme = darkTheme;
+            Properties.Settings.Default.Language = lang;
+            Properties.Settings.Default.Save();
         }
     }
 }

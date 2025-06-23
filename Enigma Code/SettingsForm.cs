@@ -19,11 +19,18 @@ namespace Enigma_Code
         Point start_point = new Point(0, 0);
         string localVer = Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
 
-        public string[] languages = { "English", "Русский" };
+        public string[] languages = {"English", "Русский"};
+
+        formMain formMain = new formMain();
 
         public settingsForm()
         {
             InitializeComponent();
+            comboBoxLang.DataSource = languages;
+            checkBoxDarkTheme.Checked = Properties.Settings.Default.darkTheme;
+            comboBoxLang.SelectedIndex = Properties.Settings.Default.Language;
+            darkThemeCheck();
+            langCheck();
         }
 
         private void panelApp_MouseDown(object sender, MouseEventArgs e)
@@ -58,8 +65,7 @@ namespace Enigma_Code
 
         private void buttonCloseApp_Click(object sender, EventArgs e)
         {
-            formMain formMain = new formMain();
-            formMain.Show();
+            Properties.Settings.Default.Save();
             this.Close();
         }
 
@@ -88,6 +94,7 @@ namespace Enigma_Code
                 buttonCloseApp.ForeColor = labelApp.ForeColor;
                 buttonMinApp.ForeColor = labelApp.ForeColor;
                 checkBoxDarkTheme.ForeColor = labelApp.ForeColor;
+                Properties.Settings.Default.darkTheme = false;
             }
             else
             {
@@ -98,7 +105,9 @@ namespace Enigma_Code
                 buttonCloseApp.ForeColor = labelApp.ForeColor;
                 buttonMinApp.ForeColor = labelApp.ForeColor;
                 checkBoxDarkTheme.ForeColor = labelApp.ForeColor;
+                Properties.Settings.Default.darkTheme = true;
             }
+            Properties.Settings.Default.Save();
         }
 
         private void checkBoxDarkTheme_CheckedChanged(object sender, EventArgs e)
@@ -106,14 +115,50 @@ namespace Enigma_Code
             if (checkBoxDarkTheme.Checked)
             {
                 Properties.Settings.Default.darkTheme = true;
-                Properties.Settings.Default.Save();
             }
             else
             {
                 Properties.Settings.Default.darkTheme = false;
-                Properties.Settings.Default.Save();
             }
+            Properties.Settings.Default.Save();
             darkThemeCheck();
+        }
+
+        private void langCheck()
+        {
+            if (Properties.Settings.Default.Language == 0)
+            {
+                labelApp.Text = "Settings";
+                checkBoxDarkTheme.Text = "Dark theme";
+                comboBoxLang.SelectedIndex = 0;
+            }
+            else if(Properties.Settings.Default.Language == 1)
+            {
+                labelApp.Text = "Настройки";
+                checkBoxDarkTheme.Text = "Тёмная тема";
+                comboBoxLang.SelectedIndex = 1;
+            }
+        }
+
+        private void comboBoxLang_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxLang.SelectedIndex == 0)
+            {
+                Properties.Settings.Default.Language = 0;
+            }
+            else if (comboBoxLang.SelectedIndex == 1)
+            {
+                Properties.Settings.Default.Language = 1;
+            }
+            Properties.Settings.Default.Save();
+            langCheck();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            langCheck();
+            darkThemeCheck();
+            timer.Enabled = false;
         }
     }
 }
